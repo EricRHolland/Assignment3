@@ -18,11 +18,9 @@ from spacy import displacy
 # import matplotlib.pyplot as plt
 
 stopwords=list(STOP_WORDS)
-from string import punctuation
 punctuation=punctuation+ '\n'
 
 import pandas as pd
-from sentence_transformers import SentenceTransformer
 import scipy.spatial
 import pickle as pkl
 #import os
