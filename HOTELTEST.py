@@ -13,8 +13,9 @@ from heapq import nlargest
 import os
 nlp = spacy.load("en_core_web_sm")
 from spacy import displacy
+import streamlit as st
 
-from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+from wordcloud import WordCloud, ImageColorGenerator, STOPWORDS
 import matplotlib.pyplot as plt
 
 stopwords=list(STOP_WORDS)
@@ -22,9 +23,11 @@ from string import punctuation
 punctuation=punctuation+ '\n'
 
 import pandas as pd
+from sentence_transformers import SentenceTransformer
 import scipy.spatial
 import pickle as pkl
-import os
+#import os
+
 from sentence_transformers import SentenceTransformer, util
 import torch
 st.set_option('deprecation.showPyplotGlobalUse', False)
