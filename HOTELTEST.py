@@ -15,7 +15,7 @@ nlp = spacy.load("en_core_web_sm")
 from spacy import displacy
 import streamlit as st
 
-from wordcloud import WordCloud, STOPWORDS
+# from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
 stopwords=list(STOP_WORDS)
