@@ -106,7 +106,7 @@ st.markdown("This makes the app run much faster after deploying! Woohoo!")
 # with open("corpus_embeddings.pkl" , "wb") as file_:
 #   pkl.dump(corpus_embeddings,file_)
 with open("df.pkl" , "rb") as file3:
-  df = pkl.load(file3)
+    df = pkl.load(file3)
 with open('corpus_embeddings.pkl', 'rb') as file2:
     corpus_embeddings = pkl.load(file2)
 with open('corpus.pkl', 'rb') as file1:
