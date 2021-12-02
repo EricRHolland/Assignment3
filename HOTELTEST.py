@@ -8,11 +8,11 @@ import streamlit as st
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
-from collections import Counter
-from heapq import nlargest
-import os
+# from collections import Counter
+# from heapq import nlargest
+# import os
 nlp = spacy.load("en_core_web_sm")
-from spacy import displacy
+# from spacy import displacy
 
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
@@ -21,7 +21,7 @@ stopwords=list(STOP_WORDS)
 punctuation=punctuation+ '\n'
 
 import pandas as pd
-import scipy.spatial
+# import scipy.spatial
 import pickle as pkl
 #import os
 
