@@ -112,47 +112,49 @@ corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
 
 # Query sentences:
 userinput = st.text_input('What kind of hotel are you looking for?')
-queries = [str(userinput)]
-query_embeddings = embedder.encode(queries,show_progress_bar=True)
-
-from sentence_transformers import SentenceTransformer, util
-import torch
-
-
-def plot_cloud(wordcloud):
-    plt.figure(figsize=(40, 30))
-    # Display image
-    plt.imshow(wordcloud) 
-    # No axis details
-    plt.axis("off");
+if not userinput:
+    st.write("Please enter a query to get results")
+else:
+    queries = [str(userinput)]
+    query_embeddings = embedder.encode(queries,show_progress_bar=True)
+    from sentence_transformers import SentenceTransformer, util
+    import torch
 
 
-# Find the closest 5 sentences of the corpus for each query sentence based on cosine similarity
-top_k = min(5, len(corpus))
-for query in queries:
-    query_embedding = embedder.encode(query, convert_to_tensor=True)
+    def plot_cloud(wordcloud):
+        plt.figure(figsize=(40, 30))
+        # Display image
+        plt.imshow(wordcloud) 
+        # No axis details
+        plt.axis("off");
 
-    # We use cosine-similarity and torch.topk to find the highest 5 scores
-    cos_scores = util.pytorch_cos_sim(query_embedding, corpus_embeddings)[0]
-    top_results = torch.topk(cos_scores, k=top_k)
 
-    st.write("\n\n======================\n\n")
-    st.write("Query:", query)
-    st.write("\nTop 5 most similar sentences in corpus:")
+    # Find the closest 5 sentences of the corpus for each query sentence based on cosine similarity
+    top_k = min(5, len(corpus))
+    for query in queries:
+        query_embedding = embedder.encode(query, convert_to_tensor=True)
 
-    for score, idx in zip(top_results[0], top_results[1]):
-        st.write("(Score: {:.4f})".format(score))
-        row_dict = df.loc[df['all_review']== corpus[idx]]
-        st.write("paper_id:  " , row_dict['hotelName'] , "\n")
-        #wordcloud = WordCloud(width= 3000, height = 1750, random_state=42, background_color='white', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(str(corpus[idx]))
-        wordcloud = WordCloud().generate(corpus[idx])
-        fig, ax = plt.subplots()
-        plt.imshow(wordcloud, interpolation='bilinear')
-        plt.axis("off")
-        plt.show()
-        st.pyplot(fig)
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        
+        # We use cosine-similarity and torch.topk to find the highest 5 scores
+        cos_scores = util.pytorch_cos_sim(query_embedding, corpus_embeddings)[0]
+        top_results = torch.topk(cos_scores, k=top_k)
+
+        st.write("\n\n======================\n\n")
+        st.write("Query:", query)
+        st.write("\nTop 5 most similar sentences in corpus:")
+
+        for score, idx in zip(top_results[0], top_results[1]):
+            st.write("(Score: {:.4f})".format(score))
+            row_dict = df.loc[df['all_review']== corpus[idx]]
+            st.write("paper_id:  " , row_dict['hotelName'] , "\n")
+            #wordcloud = WordCloud(width= 3000, height = 1750, random_state=42, background_color='white', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(str(corpus[idx]))
+            wordcloud = WordCloud().generate(corpus[idx])
+            fig, ax = plt.subplots()
+            plt.imshow(wordcloud, interpolation='bilinear')
+            plt.axis("off")
+            plt.show()
+            st.pyplot(fig)
+            st.set_option('deprecation.showPyplotGlobalUse', False)
+     
 # import pickle as pkl
 #upload a csv file, convereted that csv file after cleaning and converted to embedding
 # if we dump the corpus into a pickle file, and then load the file and it will be saved in the system. 
