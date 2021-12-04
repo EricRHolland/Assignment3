@@ -20,7 +20,6 @@ import matplotlib.pyplot as plt
 stopwords=list(STOP_WORDS)
 punctuation=punctuation+ '\n'
 
-import pandas as pd
 # import scipy.spatial
 import pickle as pkl
 #import os
@@ -145,13 +144,14 @@ for query in queries:
         st.write("(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
         st.write("paper_id:  " , row_dict['hotelName'] , "\n")
-        wordcloud = WordCloud(width= 3000, height = 1750, random_state=42, background_color='white', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(str(corpus[idx]))
-        plot_cloud(wordcloud)
-        plt.imshow(wordcloud, interpolation = 'bilinear')
+        #wordcloud = WordCloud(width= 3000, height = 1750, random_state=42, background_color='white', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(str(corpus[idx]))
+        wordcloud = WordCloud().generate(corpus[idx])
+        fig, ax = plt.subplots()
+        plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
         plt.show()
-        st.pyplot()
-        
+        st.pyplot(fig)
+        st.set_option('deprecation.showPyplotGlobalUse', False)
         
 # import pickle as pkl
 #upload a csv file, convereted that csv file after cleaning and converted to embedding
