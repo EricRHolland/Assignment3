@@ -113,7 +113,7 @@ corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
 # Query sentences:
 userinput = st.text_input('What kind of hotel are you looking for?')
 if not userinput:
-    st.write("Please enter a query to get results")
+    st.write("Nothing entered yet. Please enter what you're looking for.")
 else:
     queries = [str(userinput)]
     query_embeddings = embedder.encode(queries,show_progress_bar=True)
