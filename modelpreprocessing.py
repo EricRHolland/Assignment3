@@ -135,7 +135,6 @@ Name: hotel_name, dtype: object"""]
 df['hotelName'] = df['hotelName'].replace(old_values,new_values)
 
 
-
 df_combined = df.sort_values(['hotelName']).groupby('hotelName', sort=False).review_body.apply(''.join).reset_index(name='all_review')
 
 # re combines and puts everything in lower case
