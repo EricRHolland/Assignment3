@@ -38,7 +38,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 df = pd.read_csv('C:/Users/EricH/MachineLearning/Assignment3/Sydneyhotelreviews.csv')
 
 df['hotelName'].value_counts()
-a = df['hotelName'].drop_duplicates()
+df['hotelName'].drop_duplicates()
 
 new_values = ['Novotel Sydney on Darling Harbour',
 'Meriton Suites Zetland',
@@ -71,9 +71,9 @@ new_values = ['Novotel Sydney on Darling Harbour',
 'Hyde Park Inn',
 'Veriu Broadway']
 
-old_values = ["""0    Novotel Sydney on Darling Harbour 
-              Name: hotel_name, dtype: object""",
-              """1    Meriton Suites Zetland
+old_values = ["""0    Novotel Sydney on Darling Harbour
+Name: hotel_name, dtype: object""",
+"""1    Meriton Suites Zetland
 Name: hotel_name, dtype: object""",
 """2    Cambridge Hotel Sydney
 Name: hotel_name, dtype: object""",
@@ -132,6 +132,8 @@ Name: hotel_name, dtype: object""",
 """29    Veriu Broadway
 Name: hotel_name, dtype: object"""]
 
+df = pd.DataFrame(df)
+df['hotelName'].values
 df['hotelName'] = df['hotelName'].replace(old_values,new_values)
 
 

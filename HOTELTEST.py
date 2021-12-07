@@ -5,6 +5,7 @@ Created on Tue Nov 30 16:46:41 2021
 @author: EricH
 """
 import streamlit as st
+import pandas as pd
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
