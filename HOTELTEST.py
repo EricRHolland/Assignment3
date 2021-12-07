@@ -116,9 +116,6 @@ if not userinput:
 else:
     queries = [str(userinput)]
     query_embeddings = embedder.encode(queries,show_progress_bar=True)
-    from sentence_transformers import SentenceTransformer, util
-    import torch
-
 
     def plot_cloud(wordcloud):
         plt.figure(figsize=(40, 30))
