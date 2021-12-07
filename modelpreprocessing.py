@@ -20,7 +20,7 @@ from spacy import displacy
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import matplotlib.pyplot as plt
 
-stopwords=list(STOP_WORDS)
+stopwords=list(STOP_WORDS) + ['hotel','room','stay','hostel']
 from string import punctuation
 punctuation=punctuation+ '\n'
 
