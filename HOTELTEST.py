@@ -17,7 +17,7 @@ nlp = spacy.load("en_core_web_sm")
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
-stopwords=list(STOP_WORDS)
+stopwords=list(STOP_WORDS) + ['hotel','room','stay','hostel']
 punctuation=punctuation+ '\n'
 
 # import scipy.spatial
@@ -116,8 +116,6 @@ if not userinput:
 else:
     queries = [str(userinput)]
     query_embeddings = embedder.encode(queries,show_progress_bar=True)
-    from sentence_transformers import SentenceTransformer, util
-    import torch
 
 
     def plot_cloud(wordcloud):
