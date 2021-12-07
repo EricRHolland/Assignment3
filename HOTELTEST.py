@@ -143,7 +143,7 @@ else:
         for score, idx in zip(top_results[0], top_results[1]):
             st.write("(Score: {:.4f})".format(score))
             row_dict = df.loc[df['all_review']== corpus[idx]]
-            st.write(HTML_WRAPPER.format("<b>Hotel Name:  </b>" + re.sub(r'[0-9]+', '', row_dict)), unsafe_allow_html=True)
+            st.write("Hotel Name: " + re.sub(r'[0-9]+', '', row_dict))
             #wordcloud = WordCloud(width= 3000, height = 1750, random_state=42, background_color='white', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(str(corpus[idx]))
             wordcloud = WordCloud().generate(corpus[idx])
             fig, ax = plt.subplots()
