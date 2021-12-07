@@ -13,7 +13,7 @@ from string import punctuation
 # import os
 nlp = spacy.load("en_core_web_sm")
 # from spacy import displacy
-
+import re
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
@@ -126,6 +126,10 @@ else:
         plt.imshow(wordcloud) 
         # No axis details
         plt.axis("off");
+        
+        
+    HTML_WRAPPER = """<div style="overflow-x: auto; border: 1px solid #e6e9ef; border-radius: 0.25rem; padding: 1rem; margin-bottom: 2.5rem">{}</div>"""
+
 
 
     # Find the closest 5 sentences of the corpus for each query sentence based on cosine similarity
@@ -144,7 +148,9 @@ else:
         for score, idx in zip(top_results[0], top_results[1]):
             st.write("(Score: {:.4f})".format(score))
             row_dict = df.loc[df['all_review']== corpus[idx]]
-            st.write(row_dict['hotelName'] , "\n")
+            st.write(HTML_WRAPPER.format(
+                "<b>Hotel Name:  </b>" + re.sub(r'[0-9]+', '', row_dict) + "(Score: {:.4f})".format(
+                    score), unsafe_allow_html=True))
             #wordcloud = WordCloud(width= 3000, height = 1750, random_state=42, background_color='white', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(str(corpus[idx]))
             wordcloud = WordCloud().generate(corpus[idx])
             fig, ax = plt.subplots()
