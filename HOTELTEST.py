@@ -17,7 +17,7 @@ nlp = spacy.load("en_core_web_sm")
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
-stopwords=list(STOP_WORDS)
+stopwords=list(STOP_WORDS) + ['hotel','room','stay','hostel']
 punctuation=punctuation+ '\n'
 
 # import scipy.spatial
@@ -144,7 +144,7 @@ else:
             row_dict = df.loc[df['all_review']== corpus[idx]]
             st.write(row_dict['hotelName'] , "\n")
             #wordcloud = WordCloud(width= 3000, height = 1750, random_state=42, background_color='white', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(str(corpus[idx]))
-            wordcloud = WordCloud().generate(corpus[idx])
+            wordcloud = WordCloud(stopwords = stopwords).generate(corpus[idx])
             fig, ax = plt.subplots()
             plt.imshow(wordcloud, interpolation='bilinear')
             plt.axis("off")
