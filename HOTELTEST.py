@@ -17,7 +17,7 @@ nlp = spacy.load("en_core_web_sm")
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
-stopwords=list(STOP_WORDS) + ['hotel','room','stay','hostel']
+stopwords=list(STOP_WORDS)
 punctuation=punctuation+ '\n'
 
 # import scipy.spatial
