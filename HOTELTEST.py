@@ -13,11 +13,11 @@ from string import punctuation
 # import os
 nlp = spacy.load("en_core_web_sm")
 # from spacy import displacy
-import re
+
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
-stopwords=list(STOP_WORDS)+ ['hotel','room','stay','hostel']
+stopwords=list(STOP_WORDS)
 punctuation=punctuation+ '\n'
 
 # import scipy.spatial
@@ -106,10 +106,8 @@ with open('corpus_embeddings.pkl', 'rb') as file2:
     corpus_embeddings = pkl.load(file2)
 with open('corpus.pkl', 'rb') as file1:
     corpus = pkl.load(file1)
+corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
 
-
-
-HTML_WRAPPER = """<div style="overflow-x: auto; border: 1px solid #e6e9ef; border-radius: 0.25rem; padding: 1rem; margin-bottom: 2.5rem">{}</div>"""
 
 # Query sentences:
 userinput = st.text_input('What kind of hotel are you looking for?')
@@ -118,6 +116,9 @@ if not userinput:
 else:
     queries = [str(userinput)]
     query_embeddings = embedder.encode(queries,show_progress_bar=True)
+    from sentence_transformers import SentenceTransformer, util
+    import torch
+
 
     def plot_cloud(wordcloud):
         plt.figure(figsize=(40, 30))
@@ -143,7 +144,7 @@ else:
         for score, idx in zip(top_results[0], top_results[1]):
             st.write("(Score: {:.4f})".format(score))
             row_dict = df.loc[df['all_review']== corpus[idx]]
-            st.write(row_dict['hotel_name'] , "\n")
+            st.write(row_dict['hotelName'] , "\n")
             #wordcloud = WordCloud(width= 3000, height = 1750, random_state=42, background_color='white', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(str(corpus[idx]))
             wordcloud = WordCloud().generate(corpus[idx])
             fig, ax = plt.subplots()
