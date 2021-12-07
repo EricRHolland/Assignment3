@@ -17,7 +17,7 @@ import re
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
-stopwords=list(STOP_WORDS)
+stopwords=list(STOP_WORDS)+ ['hotel','room','stay','hostel']
 punctuation=punctuation+ '\n'
 
 # import scipy.spatial
@@ -106,8 +106,10 @@ with open('corpus_embeddings.pkl', 'rb') as file2:
     corpus_embeddings = pkl.load(file2)
 with open('corpus.pkl', 'rb') as file1:
     corpus = pkl.load(file1)
-corpus_embeddings = embedder.encode(corpus, convert_to_tensor=True)
 
+
+
+HTML_WRAPPER = """<div style="overflow-x: auto; border: 1px solid #e6e9ef; border-radius: 0.25rem; padding: 1rem; margin-bottom: 2.5rem">{}</div>"""
 
 # Query sentences:
 userinput = st.text_input('What kind of hotel are you looking for?')
@@ -123,10 +125,6 @@ else:
         plt.imshow(wordcloud) 
         # No axis details
         plt.axis("off");
-        
-        
-    HTML_WRAPPER = """<div style="overflow-x: auto; border: 1px solid #e6e9ef; border-radius: 0.25rem; padding: 1rem; margin-bottom: 2.5rem">{}</div>"""
-
 
 
     # Find the closest 5 sentences of the corpus for each query sentence based on cosine similarity
