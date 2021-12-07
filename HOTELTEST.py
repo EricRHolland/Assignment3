@@ -32,7 +32,6 @@ embedder = SentenceTransformer('all-MiniLM-L6-v2')
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 st.title("Sydney Hotel Search App")
-st.title("Eric Holland")
 st.markdown("Assignment 3")
 st.markdown("This a query search that works using google NLP tools.")
 st.markdown("It successfully uses pickle to dump and load data using a preprocessing file.")
