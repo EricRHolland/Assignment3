@@ -126,7 +126,6 @@ else:
         # No axis details
         plt.axis("off");
 
-
     # Find the closest 5 sentences of the corpus for each query sentence based on cosine similarity
     top_k = min(5, len(corpus))
     for query in queries:
