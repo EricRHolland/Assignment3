@@ -74,7 +74,7 @@ st.markdown("This makes the app run much faster after deploying! Woohoo!")
 # len(df_sentences_list)
 
 # list(df_sentences.keys())[:5]
-
+##
 # df_sentences_list = [str(d) for d in tqdm(df_sentences_list)]
 
 
@@ -117,6 +117,7 @@ if not userinput:
 else:
     queries = [str(userinput)]
     query_embeddings = embedder.encode(queries,show_progress_bar=True)
+##query testing
 
 
     def plot_cloud(wordcloud):
