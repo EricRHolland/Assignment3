@@ -45,6 +45,9 @@ st.markdown("This makes the app run much faster after deploying! Woohoo!")
 #walk through pkl dump and load and successfull st.markdown call
 
 # this worked the most with the corpus and 
+##testing commit
+
+##test
 
 # df = pd.read_csv('C:/Users/EricH/MachineLearning/try2/Assignment3/sydneyhotels.csv')
 
